@@ -7,7 +7,9 @@ var url  = require("url" );
  */
 var favicon = fs.readFileSync('./favicon.ico');
 var router = function(req, res) {
-    syslog("ReqHeader|" + req.connection.remoteAddress + "|" + JSON.stringify(req.headers));
+    syslog("ReqHeader|" + req.connection.remoteAddress 
+         + "|" + JSON.stringify(req.headers)
+    );
     var path = url.parse(req.url).pathname;
     switch(path) {
         case '/favicon.ico':
@@ -36,7 +38,10 @@ var respond = function(request, response) {
     );
     response.writeHead(200, {'Content-Type': 'text/html'});
     response.write('<!DOCTYPE HTML>\n');
-    response.write('<HTML><HEAD><TITLE>PortfolioPlot</TITLE><link rel="apple-touch-icon" href="/favicon.ico"/></HEAD><BODY>\n');
+    response.write('<HTML><HEAD><TITLE>PortfolioPlot</TITLE>'
+                 + '<link rel="apple-touch-icon" href="/favicon.ico" />'
+                 + '</HEAD><BODY>\n'
+    );
     response.write('[{"id":"NFLX","text":"NFLX","extra":"Netflix Inc."}\n');
     response.write(',{"id":"AAPL","text":"AAPL","extra":"Apple Inc."}\n');
     response.write(',{"id":"INTC","text":"INTC","extra":"Intel Corp."}\n');
